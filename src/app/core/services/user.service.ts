@@ -40,7 +40,6 @@ export class UserService {
 
     loadToken() {
       const token = SessionService.getToken();
-      console.log(token)
       if (token) {
         this.isAuthenticated.next(true);
       } else {
@@ -63,13 +62,7 @@ export class UserService {
   
     setAuth(user: User) {
       // Save JWT sent from server in storage
-      // this.sessionService.saveToken(user.token);
       this.updateAuthData(user);/// //here
-      // this.sessionService.saveUser(user);
-      // // Set current user data into observable
-      // this.currentUserSubject.next(user);
-      // // Set isAuthenticated to true
-      // this.isAuthenticatedSubject.next(true);
     }
   
     updateAuthData(user: User) {
@@ -93,8 +86,8 @@ export class UserService {
     }
   
     getCurrentUser(): User {
-      if (!this.currentUserSubject.value.token) {
-        const user = SessionService.getUser();
+      if (!this.currentUserSubject.value.token) {      
+        const user = SessionService.getUser();    
         this.currentUserSubject.next(user);
       }
       return this.currentUserSubject.value;
@@ -109,27 +102,27 @@ export class UserService {
             decodedToken,
             user:data.user,
           };
-          console.log(response);
-          return response;
+          if(response.user.seller === true){
+            this.purgeAuth()
+            return null
+          }else{
+            return response;
+          }
         })
       );
     }
-    attemptAuth(user:any):Observable<any>{
+    attemptAuth(user:any):Observable<any> {
+      
       const id = user._id? user._id : '';
-      return this.getUserById(id)
+        return this.getUserById(id)
         .pipe(
           map((data) => {
             this.setAuth({ ...user, ...data });
             return user;
           }),
-        );
+        );  
     }
     getUserById(id: string): Observable<User> {
       return this.apiService.get(`/auth/info/${id}`);
     }
-    
- 
-
-  
-  
 }

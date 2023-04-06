@@ -29,7 +29,7 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-4 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block">
       
         <div class="m-3">
-        <h3>Lorem, ipsum dolor sit</h3>
+        <h3>ShopEase</h3>
         <p>"En nuestra plataforma de compras en línea, 'ShopEase', nos esforzamos por ofrecerte una experiencia de compra fácil, segura y satisfactoria. Para sacar el máximo provecho de tu experiencia en nuestra tienda en línea, te recomendamos seguir estos consejos:
 
           Explora nuestra amplia selección de productos cuidadosamente seleccionados y encuentra el que mejor se adapte a tus necesidades y preferencias.
@@ -105,23 +105,31 @@
   
   </div>
 </div>
-<section class="mt-2">
+<section    class="mt-2">
   <h4 class="my-3 px-3">Mas buscados</h4>
+  
   <tui-carousel
     [draggable]="true"
     [itemsCount]="5"
     [(index)]="index"
+   
 >
-    <ng-container *ngFor="let item of items; let i = index">
+    <ng-container *ngFor="let product of productsList; let i = index">
+    
+     <!--<p *tuiItem>{{product.title }}</p>--> 
         <img
-            *tuiItem
-            alt=""
-            draggable="false"
-            src="{{ item }}"
-            class="item"
-            [class.item_active]="i === index + 1"
-        />
+        *tuiItem
+        alt="{{product.title}}"
+        draggable="false"
+        src= "https://www.cloudways.com/blog/wp-content/uploads/Smart-Watch.jpg"
+        class="item"
+        [class.item_active]="i === index + 1"
+    />
+    
+      
+        
     </ng-container>
+    
 </tui-carousel>
   
 </section>

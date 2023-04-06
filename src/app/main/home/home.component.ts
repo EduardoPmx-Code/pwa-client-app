@@ -8,6 +8,7 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 export class HomeComponent implements OnInit {
   categories :any
+  productsList:any
   index = 0;
  
   readonly items = [
@@ -36,6 +37,15 @@ export class HomeComponent implements OnInit {
       this.categories = data
       console.log(this.categories)
      })
+     this.initOrderList()
   }
+  initOrderList(){
+    return this.productsServices.getAllProducts().subscribe(
+       (data)=>{
+         this.productsList= data
+         console.log(this.productsList)
+       }
+     )
+   }
 
 }

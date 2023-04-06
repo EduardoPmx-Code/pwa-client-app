@@ -16,7 +16,7 @@ export class ShoppingCartService {
   
   private cart: CartProduct[] = [];
   private cartSubject = new BehaviorSubject<CartProduct[]>(this.cart);
-  
+  public cartlength = this.cart.length
   constructor() { }
 
   getCart(): Observable<CartProduct[]> {
@@ -39,6 +39,7 @@ export class ShoppingCartService {
     if (index >= 0) {
       this.cart.splice(index, 1);
       this.cartSubject.next(this.cart);
+      this.cart.length
     }
   }
 

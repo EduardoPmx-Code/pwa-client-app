@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ExpirationTokenService } from './core/interceptors/expiration-token.service';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
+import {TuiRootModule} from '@taiga-ui/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +19,8 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    TuiRootModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

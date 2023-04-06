@@ -10,7 +10,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ExpirationTokenService } from './core/interceptors/expiration-token.service';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
-import {TuiRootModule} from '@taiga-ui/core';
+import {TUI_SANITIZER, TuiRootModule, TuiSvgModule, tuiSvgOptionsProvider} from '@taiga-ui/core';
+import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,12 +22,14 @@ import {TuiRootModule} from '@taiga-ui/core';
     HttpClientModule,
     BrowserAnimationsModule,
     TuiRootModule,
+
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     })
+    
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,
@@ -37,7 +40,8 @@ import {TuiRootModule} from '@taiga-ui/core';
     provide: HTTP_INTERCEPTORS,
     useClass: ExpirationTokenService,
     multi: true,
-  }],
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,128 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img height="400px"  src="https://www.moengage.com/wp-content/uploads/2021/08/Feature-1.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img height="400px"  src="https://www.webchanakya.com/storage/2016/01/10-CONTENT-STRATEGIES-FOR-E-COMMERCE-SITES-TO-BOOST-SALES..png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img height="400px" src="https://www.theetailers.com/wp-content/uploads/2017/11/AddonPayments.png" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+<div class="row pt-3">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block">
+      
+        <div class="m-3">
+        <h3>Lorem, ipsum dolor sit</h3>
+        <p>"En nuestra plataforma de compras en línea, 'ShopEase', nos esforzamos por ofrecerte una experiencia de compra fácil, segura y satisfactoria. Para sacar el máximo provecho de tu experiencia en nuestra tienda en línea, te recomendamos seguir estos consejos:
+
+          Explora nuestra amplia selección de productos cuidadosamente seleccionados y encuentra el que mejor se adapte a tus necesidades y preferencias.
+          
+          Asegúrate de leer las descripciones detalladas de los productos y sus especificaciones para tomar una decisión informada antes de realizar tu compra.
+          
+          Si tienes alguna pregunta o inquietud, nuestro equipo de soporte al cliente está disponible para ayudarte en cualquier momento.
+          
+          Una vez que hayas hecho tu compra, sigue las instrucciones de envío y pago con atención para evitar problemas y retrasos.
+          
+          En resumen, te recomendamos explorar nuestra tienda en línea, leer las descripciones detalladas de los productos, contactar al equipo de soporte si tienes alguna pregunta, y seguir las instrucciones de envío y pago cuidadosamente. Esperamos que disfrutes de tu experiencia de compra en 'ShopEase'".</p>
+        <button class="btn btn-primary"> submit</button>
+        </div>
+        
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+    <!--  <button
+      tuiAction
+      type="button"
+  >
+      <section>
+          <h3 class="header tui-text_body-s">Header</h3>
+          <p class="description tui-text_body-xs">Description</p>
+      </section>
+      <tui-marker-icon
+          size="xs"
+          src="tuiIconStarLarge"
+          class="tui-island__marker icon"
+      ></tui-marker-icon>
+  </button>
+  
+  <button
+      tuiAction
+      type="button"
+  >
+      <section>
+          <h3 class="header tui-text_body-m">Header</h3>
+          <p class="description tui-text_body-s">Description</p>
+      </section>
+      <tui-marker-icon
+          size="s"
+          src="tuiIconBellLarge"
+          class="tui-island__marker icon"
+      ></tui-marker-icon>
+  </button>-->
+  <div class="container">
+    <div class="row  justify-content-center mb-3  g-4  ">
+     
+      <h4 class="text-center">categorias</h4>
+      
+        <button *ngFor="let category of categories"
+        tuiAction
+        type="button"
+        class="col-12 col-sm-12 col-md-12 col-lg-4 m-3  "
+    >
+        <section>
+            <h3 class="header tui-text_h6">{{category.title
+            }}</h3>
+            <p class="description tui-text_body-m">
+               {{category.description}}
+            </p>
+        </section>
+        <tui-marker-icon
+            size="m"
+            src="tuiIconFlagLarge"
+            class="tui-island__marker icon"
+        ></tui-marker-icon>
+    </button>
+      
+    </div>
+  </div>
+  
+  
+  </div>
+</div>
+<section class="mt-2">
+  <h4 class="my-3 px-3">Mas buscados</h4>
+  <tui-carousel
+    [draggable]="true"
+    [itemsCount]="5"
+    [(index)]="index"
+>
+    <ng-container *ngFor="let item of items; let i = index">
+        <img
+            *tuiItem
+            alt=""
+            draggable="false"
+            src="{{ item }}"
+            class="item"
+            [class.item_active]="i === index + 1"
+        />
+    </ng-container>
+</tui-carousel>
+  
+</section>
+

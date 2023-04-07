@@ -1,6 +1,21 @@
-<div  *ngIf="cartProducts.length !== 0">
-    <div  *ngFor="let product of cartProducts ">
-        <p>hola</p>
+<div  *ngIf="cartProducts.length === 0">
+    <div >
+<p>no tienes productos en tu carrito </p>
     </div>
+</div>
+<div class="row" *ngIf="cartProducts.length !== 0">
+    <div class="col" *ngFor="let product of cartProducts ">
+        <tui-island>
+            <p>{{product.title}}</p>
+            <img width="200px" src="{{product.image}}" alt="product.title">
+            <p>Precio: {{product.price |currency}}</p> <p>cantidad: {{product.quantity}}</p>
+        </tui-island>
+        
+
+    </div>
+    
+</div>
+<div *ngIf="cartProducts.length !== 0">
+    <button class="btn btn-primary " routerLink="/main/checkout">Pagar </button>
 </div>
 

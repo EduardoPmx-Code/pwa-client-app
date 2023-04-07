@@ -12,7 +12,11 @@ export class NavbarComponent implements OnInit {
   constructor(private cart:ShoppingCartService) { }
 
   ngOnInit(): void {
-    this.cartProducts =this.cart.cartlength
+    this.cart.getCart().subscribe(
+      (data=>{
+        this.cartProducts = data.length
+      })
+    )
   }
 
 }

@@ -2,8 +2,8 @@
 <div *ngFor="let product of productsList" class="col">
     <div class="">
         <a
-        href="/"
-        tuiLink
+        routerLink="/main/product/{{product._id}}"
+       
     >
         <tui-island size="l">
             <div class="tui-island__content">

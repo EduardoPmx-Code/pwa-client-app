@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProductsService } from 'src/app/core/services/products.service';
 
@@ -7,10 +7,13 @@ import { ProductsService } from 'src/app/core/services/products.service';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, OnDestroy {
   productsList:Array<any> 
   $products:Subscription | undefined;
   constructor(private productsServices:ProductsService) {this.productsList=[] }
+  ngOnDestroy(): void {
+    this.$products?.unsubscribe()
+  }
 
   ngOnInit(): void {
     this.$products = this.initProductsList()

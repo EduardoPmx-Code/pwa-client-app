@@ -1,1 +1,24 @@
-<p>product works!</p>
+<div class="row">
+<div class="col">
+    <div class="w-50" *ngIf="product">
+        <tui-island
+        size="l"
+      
+    >
+    <h3 class="title">{{product.title}}</h3>
+    <div class="d-flex">
+        <img width="200px" src="{{product.image}}" alt="{{product.title}}">
+        <div class="">
+            <p>{{product.description}}</p>
+            <p>{{product.price|currency}}</p>
+            <div>
+                
+                <button class="btn btn-primary" (click)=" addACart()"> agregar al carrito</button>
+            </div>
+        </div>
+    </div>
+    </tui-island>
+    </div>
+</div>
+</div>
+

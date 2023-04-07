@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductComponent } from './product/product.component';
 import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutGuard } from '../core/guard/checkout.guard';
 
 const routes: Routes = [
   {path:'',
@@ -30,6 +32,11 @@ const routes: Routes = [
     {
       path:"shopping-cart",
       component:ShopingCartComponent
+    },
+    {
+      path:"checkout",
+      component:CheckoutComponent,
+    //  canActivate: [CheckoutGuard],
     },
   ]}
 ];

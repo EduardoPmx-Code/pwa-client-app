@@ -12,14 +12,11 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/main/products-list">products</a>
           </li>
-          
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link " routerLink="/main/orders">orders</a>
           </li>
           <li class=" d-lg-none d-xl-block d-xl-none d-xxl-block d-xxl-none">
-            
-              
-                <a  tuiLink>
+                <a   routerLink="/main/shopping-cart">
                   <tui-svg
                   src="tuiIconShoppingCartLarge"
               ></tui-svg>
@@ -27,7 +24,7 @@
                 <tui-badge
                 status="primary"
                 class="ms-2"
-                [value]="6"
+                [value]="cartProducts"
             ></tui-badge>
               
           </li>
@@ -38,17 +35,18 @@
         </form>
       </div>
       <div  class="mx-4 my-2 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block">
-        <tui-island tuiLink [hoverable]="true">
-          <a  >
+        <tui-island  [hoverable]="true">
+          <a routerLink="/main/shopping-cart" >
             <tui-svg
             src="tuiIconShoppingCartLarge"
         ></tui-svg>
-          </a>
+          
           <tui-badge
           status="primary"
           class="ms-2"
           [value]="cartProducts"
       ></tui-badge>
+    </a>
         </tui-island>
         
       </div>

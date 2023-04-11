@@ -36,7 +36,7 @@ const routes: Routes = [
     {
       path:"checkout",
       component:CheckoutComponent,
-    //  canActivate: [CheckoutGuard],
+      canActivate: [CheckoutGuard],
     },
   ]}
 ];

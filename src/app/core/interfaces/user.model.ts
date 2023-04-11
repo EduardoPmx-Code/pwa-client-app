@@ -1,6 +1,7 @@
 
 
 export interface User {
+  address: any;
   // User is the person/business logged in
   id: string;
   userNames: string;

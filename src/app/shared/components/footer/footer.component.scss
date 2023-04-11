@@ -1,8 +1,11 @@
 /* ==========================================
     FOR DEMO PURPOSE
   ========================================== */
-  body {
-    background: #2a2e32;
+  .footer {
+   // background: #2a2e32;
+    position: sticky;
+    left: 0;
+    bottom: 0;
   }
   
   .text-small {

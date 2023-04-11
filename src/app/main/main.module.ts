@@ -15,6 +15,7 @@ import { ProductComponent } from './product/product.component';
 import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,8 @@ import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MainRoutingModule,
     TuiLoaderModule,
     TuiActionModule,

@@ -16,8 +16,14 @@ export class ShoppingCartService {
   
   private cart: CartProduct[] = [];
   private cartSubject = new BehaviorSubject<CartProduct[]>(this.cart);
-  public cartlength = this.cart.length
-  constructor() { }
+  public cartlength = 0
+  constructor() { 
+    this.cartSubject.subscribe((data)=>{
+      
+      this.cartlength = data.length
+      console.log(this.cartlength)
+    })
+  }
 
   getCart(): Observable<CartProduct[]> {
     return this.cartSubject.asObservable();

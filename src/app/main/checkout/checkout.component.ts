@@ -1,4 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { User } from 'src/app/core/interfaces/user.model';
+import { SessionService } from 'src/app/core/services/session.service';
+import { UserService } from 'src/app/core/services/user.service';
 declare var paypal:any;
 @Component({
   selector: 'app-checkout',
@@ -14,9 +17,17 @@ export class CheckoutComponent implements OnInit {
     img: 'assets/couch.jpg'
   };
   paidFor = false;
-  constructor() { }
+  id:any
+  address:any
+  paypalPay = false;
+  constructor(private userService:UserService,private sesionService: SessionService) { }
 
   ngOnInit(): void {
+   this.id =SessionService.getUser()
+   console.log(this.id)
+    this.userService.getUserById(this.id._id).subscribe((data)=>{
+    this.address= data.address
+    })
     paypal
     .Buttons({
       createOrder: (data:any, actions:any) => {
@@ -43,4 +54,13 @@ export class CheckoutComponent implements OnInit {
     })
     .render(this.paypalElement.nativeElement);
 }
+checkPayment(){
+  if (this.paypalPay === true) {
+    this.paypalPay= false
+  }else{
+    this.paypalPay = true
+  }
+ 
+}
+
 }

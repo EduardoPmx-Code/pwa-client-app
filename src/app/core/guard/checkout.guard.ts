@@ -9,7 +9,7 @@ import { CartProduct, ShoppingCartService } from '../services/shopping-cart.serv
 export class CheckoutGuard implements CanActivate {
   constructor(private cart:ShoppingCartService,private router: Router){}
   canActivate(){
-    if(this.cart.cartlength ===0){
+    if(this.cart.cartlength === 0){
       this.router.navigate(["/main"])
       return false
     }else{

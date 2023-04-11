@@ -24,8 +24,8 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
-<div class="row pt-3">
+<section class="container">
+  <section class="row pt-3">
     <div class="col-12 col-sm-12 col-md-12 col-lg-4 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block">
       
         <div class="m-3">
@@ -104,7 +104,7 @@
   
   
   </div>
-</div>
+</section>
 <section    class="mt-2">
   <h4 class="my-3 px-3">Mas buscados</h4>
   
@@ -116,15 +116,20 @@
 >
     <ng-container *ngFor="let product of productsList; let i = index">
     
-     <!--<p *tuiItem>{{product.title }}</p>--> 
+     <!--<p *tuiItem>{{product.title }}</p>  routerLink="/main/product/{{product._id}}"--> 
+>
         <img
-        *tuiItem
+       
         alt="{{product.title}}"
         draggable="false"
-        src= "https://www.cloudways.com/blog/wp-content/uploads/Smart-Watch.jpg"
+        src= "{{product.image }}"
         class="item"
         [class.item_active]="i === index + 1"
-    />
+        *tuiItem
+      />
+ 
+
+       
     
       
         
@@ -133,4 +138,6 @@
 </tui-carousel>
   
 </section>
+</section>
+
 

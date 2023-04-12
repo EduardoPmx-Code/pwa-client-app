@@ -1,24 +1,28 @@
-<div class="row">
-<div *ngFor="let product of productsList" class="col">
-    <div class="">
-        <a
-        routerLink="/main/product/{{product._id}}"
-        tuiLink
-    >
-        <tui-island size="l">
-            <div class="tui-island__content">
-                <div class="tui-island__figure">
-                   <img width="200px" src="{{product.image}}" alt="">
-                </div>
-                <div>
-                    <h3 class="tui-island__title">{{product.title}}</h3>
-                    <p class="tui-island__paragraph">
-                        {{product.description }}
-                    </p>
-                    
-                </div>
-            </div>
-        </tui-island>
-    </a>
-</div>
-</div>
+<section class="container">
+  
+    <div class="row">
+        <div *ngFor="let product of productsList" class="col">
+            <div class="">
+                <a
+                routerLink="/main/product/{{product._id}}"
+                tuiLink
+            >
+                <tui-island size="l">
+                    <div class="tui-island__content">
+                        <div class="tui-island__figure">
+                           <img width="200px" src="{{product.image}}" alt="">
+                        </div>
+                        <div>
+                            <h3 class="tui-island__title">{{product.title}}</h3>
+                            <p class="tui-island__paragraph">
+                                {{product.description }}
+                            </p>
+                            
+                        </div>
+                    </div>
+                </tui-island>
+            </a>
+        </div>
+        </div>
+        </div>
+</section>

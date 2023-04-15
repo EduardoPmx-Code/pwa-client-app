@@ -22,6 +22,6 @@ export class ProductsService {
     return this.apiService.get(`/categories`) 
   }
   getProductsByCategory(categoriId:string){//example
-    return this.apiService.get(`/products:id/products?city=New%20York&state=NY&country=USA&zip=10001`)
+    return this.apiService.get(`/product/category/${categoriId}`)
   }
 }

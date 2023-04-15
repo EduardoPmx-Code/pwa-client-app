@@ -3,17 +3,45 @@
         <div class="d-flex justify-content-center align-items-center mt-5">
             <div class="mt-5 card">
                 <div class="card-body">
-                    <form >
+                    <form [formGroup]="registerForm" (ngSubmit)="register()">
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                            <label  class="form-label">UserName</label>
+                            <input type="text" formControlName="username" class="form-control"  placeholder="@example">
                           </div>
                           <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-                            <input class="form-control" type="password" placeholder="*******">
+                            <label  class="form-label">Name</label>
+                            <input type="text" formControlName="name" class="form-control"  placeholder="name">
+                          </div>
+                          <div class="mb-3">
+                            <label  class="form-label">LastName</label>
+                            <input type="text" formControlName="lastName" class="form-control"  placeholder="lastName">
+                          </div>
+                          
+                        <div class="mb-3">
+                            <label  class="form-label">Email address</label>
+                            <input formControlName="email" type="email" class="form-control"  placeholder="name@example.com">
+                          </div>
+                          <div class="mb-3">
+                            <label  class="form-label">Password</label>
+                            <input formControlName="password" class="form-control" type="password" placeholder="*******">
+                          </div>
+                          <div class="mb-3">
+                            <label  class="form-label">repeat password</label>
+                            <input formControlName="repeatPassword" class="form-control" type="password" placeholder="">
+                          </div>
+                          <div class="mb-3">
+                            <label  class="form-label">ID number</label>
+                            <input type="text" formControlName="id" class="form-control" placeholder="123456">
+                          </div>
+                          <div class="mb-3">
+                            <label  class="form-label mb-3">Address</label>
+                            <input class="form-control " formControlName="country" type="text" placeholder="country">
+                            <input class="form-control mt-2" formControlName="city" type="text" placeholder="city">
+                            <input class="form-control mt-2" formControlName="state" type="text" placeholder="state">
+                            <input class="form-control mt-2" formControlName="zip" type="text" placeholder="zip">
                           </div>
                           <div class="mb-3 d-flex justify-content-between">
-                            <button class="btn btn-primary">submit</button>  <a routerLink="/auth/login"> login</a>
+                            <button class="btn btn-primary">submit</button>  <a routerLink="/auth/login"> Login</a>
                           </div>
                     </form>
 

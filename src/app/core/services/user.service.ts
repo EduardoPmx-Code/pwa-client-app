@@ -82,7 +82,7 @@ export class UserService {
       this.currentUserSubject.next({} as User);
       // Set auth status to false
       this.isAuthenticated.next(false);
-      this.router.navigate(['/auth']);
+      this.router.navigate(['/']);
     }
   
     getCurrentUser(): User {
@@ -124,5 +124,9 @@ export class UserService {
     }
     getUserById(id: string): Observable<User> {
       return this.apiService.get(`/auth/info/${id}`);
+    }
+
+    registerUser(body:any): Observable<any>{
+      return this.apiService.post("/auth/register",body)
     }
 }

@@ -17,7 +17,6 @@ export class GeolocationService {
 
   getUserLocation():Promise<[number,number]>{
    return new Promise((resolve,reject)=>{
-    debugger
     navigator.geolocation.getCurrentPosition(
       ({coords})=>{
         

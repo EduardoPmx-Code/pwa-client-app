@@ -85,12 +85,16 @@
         type="button"
         class="col-12 col-sm-12 col-md-12 col-lg-4 m-3  "
     >
+    
         <section>
-            <h3 class="header tui-text_h6">{{category.title
-            }}</h3>
-            <p class="description tui-text_body-m">
-               {{category.description}}
-            </p>
+            <a routerLink="/main/products-list/category:{{category._id}}">
+
+              <h3 class="header tui-text_h6">{{category.title
+              }}</h3>
+              <p class="description tui-text_body-m">
+                 {{category.description}}
+              </p>
+            </a>
         </section>
         <tui-marker-icon
             size="m"

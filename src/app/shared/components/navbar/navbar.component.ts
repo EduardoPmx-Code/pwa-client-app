@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit(): void {
-   this.productLengt$ = this.cart.getCart().subscribe(
+    this.cart.getCart().subscribe(
       (data=>{
         this.cartProducts = data.length
       })
@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 }
 
   ngOnDestroy(): void {
-    this.productLengt$.unsubscribe()
+  //  this.productLengt$.unsubscribe()
    }
    logOut(){
     this.userService.purgeAuth()

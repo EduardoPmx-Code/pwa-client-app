@@ -15,6 +15,8 @@
           <li class="nav-item">
             <a class="nav-link " routerLink="/main/orders">orders</a>
           </li>
+          
+          
           <li class=" d-lg-none d-xl-block d-xl-none d-xxl-block d-xxl-none">
                 <a   routerLink="/main/shopping-cart">
                   <tui-svg
@@ -35,20 +37,103 @@
         </form>
       </div>
       <div  class="mx-4 my-2 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block">
-        <tui-island  [hoverable]="true">
-          <a routerLink="/main/shopping-cart" >
-            <tui-svg
-            src="tuiIconShoppingCartLarge"
-        ></tui-svg>
-          
-          <tui-badge
-          status="primary"
-          class="ms-2"
-          [value]="cartProducts"
-      ></tui-badge>
-    </a>
-        </tui-island>
-        
+        <div class="d-flex">
+          <tui-island  [hoverable]="true">
+            <a routerLink="/main/shopping-cart" >
+              <tui-svg
+              src="tuiIconShoppingCartLarge"
+          ></tui-svg>
+            
+            <tui-badge
+            status="primary"
+            class="ms-2"
+            [value]="cartProducts"
+        ></tui-badge>
+      </a>
+          </tui-island>
+          <tui-hosted-dropdown
+          #dropdown
+          [content]="content"
+          [(open)]="dropdownOpen"
+      >
+          <button
+              tuiIconButton
+              appearance="flat"
+              icon="tuiIconUserLarge"
+              type="button"
+              [pseudoHover]="dropdown.open || null"
+          ></button>
+      </tui-hosted-dropdown>
+      <ng-template
+          #content
+          let-activeZone
+      >
+          <tui-data-list
+              tuiDataListDropdownManager
+              [tuiActiveZoneParent]="activeZone"
+              [size]="size"
+          >
+              <button
+                  *tuiLet="'French Fries' as item"
+                  tuiOption
+                  (click)="selectOption(item)"
+              >
+                  {{ item }}
+              </button>
+              <button
+                  tuiOption
+                  tuiDropdownSided
+                  tuiDropdownAlign="right"
+  
+              >
+                  Burgers
+              </button>
+              <button
+                  tuiOption
+                  tuiDropdownSided
+                  tuiDropdownAlign="right"
+              (click)="logOut()"
+              >
+                  logOut
+              </button>
+           
+          </tui-data-list>
+          <ng-template #burgersTmp>
+              <tui-data-list
+                  tuiDataListDropdownManager
+                  [tuiActiveZoneParent]="activeZone"
+              >
+                  <button
+                      *ngFor="let burger of burgers"
+                      tuiOption
+                      (click)="selectOption(burger)"
+                  >
+                      {{ burger }}
+                  </button>
+                  <button
+                      tuiOption
+                      tuiDropdownSided
+                      tuiDropdownAlign="right"
+  
+                  >
+                      Nested menu
+                  </button>
+              </tui-data-list>
+          </ng-template>
+          <ng-template #drinksTmp>
+              <tui-data-list [size]="size">
+                  <button
+                      *ngFor="let drink of drinks"
+                      tuiOption
+                      (click)="selectOption(drink)"
+                  >
+                      {{ drink }}
+                  </button>
+              </tui-data-list>
+          </ng-template>
+      </ng-template>
+        </div>
+       
       </div>
     </div>
   </nav>

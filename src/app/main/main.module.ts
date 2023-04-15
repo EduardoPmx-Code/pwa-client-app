@@ -5,8 +5,8 @@ import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
 import { NavbarComponent } from '../shared/components/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { TUI_SANITIZER, TuiLinkModule, TuiLoaderModule, TuiSvgModule, tuiSvgOptionsProvider } from '@taiga-ui/core';
-import {TuiActionModule, TuiBadgeModule, TuiCarouselModule, TuiInputModule, TuiIslandModule, TuiMarkerIconModule, TuiPaginationModule} from '@taiga-ui/kit';
+import { TUI_SANITIZER, TuiButtonModule, TuiDataListModule, TuiGroupModule, TuiHostedDropdownModule, TuiLinkModule, TuiLoaderModule, TuiSvgModule, tuiSvgOptionsProvider } from '@taiga-ui/core';
+import {TuiActionModule, TuiBadgeModule, TuiCarouselModule, TuiInputModule, TuiIslandModule, TuiMarkerIconModule, TuiPaginationModule, TuiProgressModule, TuiRadioBlockModule} from '@taiga-ui/kit';
 import { FooterComponent } from '../shared/components/footer/footer.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { OrdersComponent } from './orders/orders.component';
@@ -16,6 +16,8 @@ import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaypalComponent } from './checkout/components/paypal/paypal.component';
+import { TuiActiveZoneModule } from '@taiga-ui/cdk';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductComponent,
     ShopingCartComponent,
     CheckoutComponent,
+    PaypalComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +48,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TuiSvgModule,
     TuiBadgeModule,
     TuiInputModule,
+    TuiDataListModule,
+    TuiHostedDropdownModule,
+    TuiActiveZoneModule,
+    TuiButtonModule,
+    TuiGroupModule,
+    TuiRadioBlockModule,
+    TuiProgressModule,
   ],
   providers:[
   {

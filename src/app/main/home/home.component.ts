@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { ProductsService } from 'src/app/core/services/products.service';
 
 @Component({
@@ -6,10 +7,12 @@ import { ProductsService } from 'src/app/core/services/products.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit ,OnDestroy {
   categories :any
   productsList:any
   index = 0;
+  $categories!:Subscription
+  $products!:Subscription
  
   readonly items = [
       'https://www.cloudways.com/blog/wp-content/uploads/Smart-Watch.jpg',
@@ -31,16 +34,20 @@ export class HomeComponent implements OnInit {
   ];
 
   constructor(private productsServices:ProductsService) { }
+  ngOnDestroy(): void {
+    this.$categories.unsubscribe();
+    this.$products.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.productsServices.getCategories().subscribe((data)=>{
+  this.$categories=  this.productsServices.getCategories().subscribe((data)=>{
       this.categories = data
       console.log(this.categories)
      })
      this.initOrderList()
   }
   initOrderList(){
-    return this.productsServices.getAllProducts().subscribe(
+   this.$products = this.productsServices.getAllProducts().subscribe(
        (data)=>{
          this.productsList= data
          console.log(this.productsList)

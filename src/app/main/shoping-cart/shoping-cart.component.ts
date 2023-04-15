@@ -18,7 +18,7 @@ export class ShopingCartComponent implements OnInit {
     console.log(this.cartProducts)
   }
   removeFromCart(product:any): void {
-    console.log(product)
+
     this.shoppingCart.removeFromCart(product);
   }
   

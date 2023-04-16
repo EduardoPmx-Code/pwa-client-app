@@ -8,10 +8,12 @@ import { CartProduct, ShoppingCartService } from 'src/app/core/services/shopping
 })
 export class ShopingCartComponent implements OnInit {
   cartProducts: CartProduct[] = [];
+  totalPrice=0;
 
   constructor(private shoppingCart:ShoppingCartService,) { }
 
   ngOnInit(): void {
+    this.totalPrice = this.shoppingCart.getTotalPrice()
     this.shoppingCart.getCart().subscribe(cart => {
       this.cartProducts = cart;
     });

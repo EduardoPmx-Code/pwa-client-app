@@ -18,6 +18,7 @@ import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaypalComponent } from './checkout/components/paypal/paypal.component';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
+import { MapComponent } from './checkout/components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TuiActiveZoneModule } from '@taiga-ui/cdk';
     ShopingCartComponent,
     CheckoutComponent,
     PaypalComponent,
+    MapComponent,
   ],
   imports: [
     CommonModule,

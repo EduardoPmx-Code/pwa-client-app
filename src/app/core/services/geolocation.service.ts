@@ -6,7 +6,7 @@ import { resolve } from 'dns';
   providedIn: 'root'
 })
 export class GeolocationService {
-  public userLocation: [number, number] | undefined;
+  public userLocation!: [number, number] ;
   get isUserLocationReady():boolean{
     return !!this.userLocation
   }
@@ -20,7 +20,7 @@ export class GeolocationService {
     navigator.geolocation.getCurrentPosition(
       ({coords})=>{
         
-      this.userLocation = [coords.latitude,coords.longitude]
+      this.userLocation = [coords.longitude , coords.latitude,]
       console.log(this.userLocation)
       resolve(this.userLocation)
     }),reject((err: any)=>{

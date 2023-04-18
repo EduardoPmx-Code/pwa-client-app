@@ -7,6 +7,8 @@ import { ProductComponent } from './product/product.component';
 import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutGuard } from '../core/guard/checkout.guard';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderComponent } from './order/order.component';
 
 const routes: Routes = [
   {path:'',
@@ -37,6 +39,14 @@ const routes: Routes = [
       path:"checkout",
       component:CheckoutComponent,
       canActivate: [CheckoutGuard],
+    },
+    {
+      path:"orders",
+      component:OrdersComponent
+    },
+    {
+      path:"order/:id",
+      component:OrderComponent
     },
   ]}
 ];

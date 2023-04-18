@@ -11,7 +11,7 @@ export class OrderUserService {
   getOrderById(id:string):Observable<any>{
     return this.apiService.get(`/order/${id}`)
   }
-  getAllOrders(id:string):Observable<any>{
+  getAllByIdOrders(id:string):Observable<any>{
     return this.apiService.get(`/order/my-orders/${id}`)
   }
   

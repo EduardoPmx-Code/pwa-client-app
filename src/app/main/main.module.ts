@@ -16,9 +16,10 @@ import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PaypalComponent } from './checkout/components/paypal/paypal.component';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
 import { MapComponent } from './checkout/components/map/map.component';
+import { BillingComponent } from './checkout/components/billing/billing.component';
+import { PaymentComponent } from './checkout/components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,9 @@ import { MapComponent } from './checkout/components/map/map.component';
     ProductComponent,
     ShopingCartComponent,
     CheckoutComponent,
-    PaypalComponent,
     MapComponent,
+    BillingComponent,
+    PaymentComponent,
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 //import { v4 as uuidv4 } from 'uuid';
 
 export interface CartProduct {
+  description: any;
   _id: string;
  // id: string; // Agregamos la propiedad id al objeto CartProduct
   title: string;

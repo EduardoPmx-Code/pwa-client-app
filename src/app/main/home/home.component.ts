@@ -13,25 +13,9 @@ export class HomeComponent implements OnInit ,OnDestroy {
   index = 0;
   $categories!:Subscription
   $products!:Subscription
+  page = 1;
+  limit = 10;
  
-  readonly items = [
-      'https://www.cloudways.com/blog/wp-content/uploads/Smart-Watch.jpg',
-      'https://www.cloudways.com/blog/wp-content/uploads/Smart-Watch.jpg',
-      'https://www.cloudways.com/blog/wp-content/uploads/Smart-Watch.jpg',
-      'https://www.cloudways.com/blog/wp-content/uploads/Smart-Watch.jpg',
-      'https://www.cloudways.com/blog/wp-content/uploads/Smart-Watch.jpg',
-      'https://www.cloudways.com/blog/wp-content/uploads/Smart-Watch.jpg',
-  ];
-  index2 = 2;
- 
-  readonly items2 = [
-      'John Cleese',
-      'Eric Idle',
-      'Michael Palin',
-      'Graham Chapman',
-      'Terry Gilliam',
-      'Terry Jones',
-  ];
 
   constructor(private productsServices:ProductsService) { }
   ngOnDestroy(): void {
@@ -47,9 +31,9 @@ export class HomeComponent implements OnInit ,OnDestroy {
      this.initOrderList()
   }
   initOrderList(){
-   this.$products = this.productsServices.getAllProducts().subscribe(
+   this.$products = this.productsServices.getAllProducts(this.page,this.limit).subscribe(
        (data)=>{
-         this.productsList= data
+         this.productsList= data.items
          console.log(this.productsList)
        }
      )

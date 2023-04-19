@@ -1,7 +1,7 @@
 <section class="container">
   
     <div class="row">
-        <div *ngFor="let product of productsList" class="col">
+        <div *ngFor="let product of productsList.items" class="col">
             <div class="">
                 <a
                 routerLink="/main/product/{{product._id}}"
@@ -26,3 +26,4 @@
         </div>
         </div>
 </section>
+<button (click)="loadPageold()" *ngIf="productsList.currentPage >1 && productsList.totalPages >1" class="btn btn-danger">anterior</button> <button *ngIf="productsList.currentPage < productsList.totalPages" (click)="loadMore()" class="btn btn-primary">more</button>

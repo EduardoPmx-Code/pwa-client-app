@@ -10,7 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ExpirationTokenService } from './core/interceptors/expiration-token.service';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
-import {TUI_SANITIZER, TuiRootModule, TuiSvgModule, tuiSvgOptionsProvider} from '@taiga-ui/core';
+import {TUI_SANITIZER, TuiAlertModule, TuiRootModule, TuiSvgModule, tuiSvgOptionsProvider} from '@taiga-ui/core';
 import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
     HttpClientModule,
     BrowserAnimationsModule,
     TuiRootModule,
+    TuiAlertModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

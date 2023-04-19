@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { resolve } from 'dns';
+import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 
 @Injectable({
@@ -11,7 +13,7 @@ export class GeolocationService {
     return !!this.userLocation
   }
 
-  constructor() { 
+  constructor(private apiService:ApiService) { 
     this.getUserLocation()
   }
 
@@ -29,4 +31,10 @@ export class GeolocationService {
     })
    });
 }
+  createGeolocation(body:any):Observable<any>{
+    return this.apiService.post('/geolocation/create',body)
+  }
+  getLocationsByUserId(id:string):Observable<any>{
+    return this.apiService.get(`/geolocation/${id}`)
+  }
 }

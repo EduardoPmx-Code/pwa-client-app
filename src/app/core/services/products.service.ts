@@ -9,11 +9,11 @@ export class ProductsService {
 
   constructor(private apiService: ApiService,) { }
 
-  getAllProducts():Observable<any>{
-   return this.apiService.get('/product')
+  getAllProducts(page:number,limit:number):Observable<any>{
+   return this.apiService.get(`/product?page=${page}&limit=${limit}`)
 }
-  searchproducts(params:string):Observable<any>{
-    return this.apiService.get(`/product/search?searchTerm=${params}`)
+  searchproducts(searchTerm: string, page:number , limit:number, city?: string, state?: string, country?: string, ):Observable<any>{
+    return this.apiService.get(`/product/search?searchTerm=${searchTerm}&page=${page}&limit=${limit}`)
   }
   getProduct(id:string):Observable<any>{
     return this.apiService.get(`/product/${id}`)
@@ -21,7 +21,7 @@ export class ProductsService {
   getCategories():Observable<any>{
     return this.apiService.get(`/categories`) 
   }
-  getProductsByCategory(categoriId:string){//example
-    return this.apiService.get(`/product/category/${categoriId}`)
+  getProductsByCategory(categoriId:string,page:number, limit:number, city?: string, state?: string, country?: string,){
+    return this.apiService.get(`/product/category/${categoriId}?page=${page}&limit=${limit}`)
   }
 }

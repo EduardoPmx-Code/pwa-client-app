@@ -1,24 +1,41 @@
-<div  *ngIf="cartProducts.length === 0">
-    <div >
-<p>no tienes productos en tu carrito </p>
-    </div>
-</div>
-<div class="row" *ngIf="cartProducts.length !== 0">
-    <div class="col" *ngFor="let product of cartProducts ">
-        <tui-island>
-            <p>{{product.title}}</p>
-            <img width="200px" src="{{product.image}}" alt="product.title">
-            <p>Precio: {{product.price |currency}}</p> <p>cantidad: {{product.quantity}}</p>
-        </tui-island>
-        
-        <button class="btn btn-danger" (click)=" removeFromCart(product._id)"> eliminar</button>
+
+<section class="container py-5">
+    <div class="row ">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <div  *ngIf="cartProducts.length === 0">
+                <div >
+            <p>no tienes productos en tu carrito </p>
+            </div>
+            </div>
+            <div class="row g-3 mt-3" *ngIf="cartProducts.length !== 0">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6" *ngFor="let product of cartProducts ">
+                    <div >
+                        <tui-island class="max-h">
+                            <p>{{product.title}}</p>
+                            <img width="100px" height="100px" src="{{product.image}}" alt="product.title">
+                            <p>Precio: {{product.price |currency}}</p> <p>cantidad: {{product.quantity}}</p>
+                            <button class="btn btn-danger" (click)=" removeFromCart(product._id)"> eliminar</button>
+                        </tui-island>
+                        
+                    </div>
+                  
+                   
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <div>
+                <p>total ($): {{totalPrice}}</p>
+            </div>
+            <div *ngIf="cartProducts.length !== 0">
+                <button class="btn btn-primary " routerLink="/main/checkout">Pagar </button>
+            </div>
+        </div>
     </div>
     
-</div>
-<div>
-    <p>total ($): {{totalPrice}}</p>
-</div>
-<div *ngIf="cartProducts.length !== 0">
-    <button class="btn btn-primary " routerLink="/main/checkout">Pagar </button>
-</div>
+</section>
+
+
 

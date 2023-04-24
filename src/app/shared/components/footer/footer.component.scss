@@ -1,10 +1,14 @@
 /* ==========================================
     FOR DEMO PURPOSE
   ========================================== */
+  .footer-container{
+  //  position: relative;
+  }
   .footer {
    // background: #2a2e32;
-    position: sticky;
+    position:relative;
     left: 0;
+    right: 0;
     bottom: 0;
   }
   

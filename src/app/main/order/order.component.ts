@@ -11,6 +11,7 @@ import { OrderUserService } from 'src/app/core/services/order-user.service';
 export class OrderComponent implements OnInit {
   paramsId:any
   $route!:Subscription
+  order:any
 
   constructor(private activateRoute:ActivatedRoute,private orderService:OrderUserService,) { }
 
@@ -20,6 +21,7 @@ export class OrderComponent implements OnInit {
         this.paramsId = data
         console.log( this.paramsId.id)
         this.orderService.getOrderById(this.paramsId.id).subscribe(data=>{
+         this.order = data
           console.log(data)
         })
       }

@@ -40,18 +40,15 @@ export class ShoppingCartService {
   }
 
   addToCart(product: CartProduct): void {
-   // product.id = uuidv4(); // Generamos un id único para el producto
-   const index = this.cart.findIndex(item => item._id === product._id); // Buscamos el índice del producto correspondiente en el carrito según su id
-
-   if (index === -1) { // Si el producto no existe en el carrito, lo agregamos con cantidad 1
-     product.quantity = 1;
-     this.cart.push(product);
-   } else { // Si el producto ya existe en el carrito, aumentamos su cantidad en 1
-     this.cart[index].quantity += 1;
-   }
- 
-   this.cartSubject.next(this.cart);
-   this.cartlength = this.cart.length;
+    const index = this.cart.findIndex(item => item._id === product._id);
+    if (index === -1) {
+      product.quantity = product.quantity || 1;
+      this.cart.push(product);
+    } else {
+      this.cart[index].quantity += product.quantity;
+    }
+    this.cartSubject.next(this.cart);
+    this.cartlength = this.cart.length;
   }
 
   removeFromCart(productId: string): void {
@@ -61,7 +58,6 @@ export class ShoppingCartService {
       this.cartSubject.next(this.cart);
       console.log(this.cart)
       this.cartlength = this.cart.length; // Actualizamos la longitud del carrito
-    
     }
   }
 

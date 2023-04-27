@@ -1,39 +1,59 @@
 
 <section class="container py-5">
-    <div class="row ">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-            <div  *ngIf="cartProducts.length === 0">
-                <div >
-            <p>no tienes productos en tu carrito </p>
-            </div>
-            </div>
-            <div class="row g-3 mt-3" *ngIf="cartProducts.length !== 0">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6" *ngFor="let product of cartProducts ">
+    <div class="py-5">
+        <div class="row pb-5">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                <div  *ngIf="cartProducts.length === 0">
                     <div >
-                        <tui-island class="max-h">
-                            <p>{{product.title}}</p>
-                            <img width="100px" height="100px" src="{{product.image}}" alt="product.title">
-                            <p>Precio: {{product.price |currency}}</p> <p>cantidad: {{product.quantity}}</p>
-                            <button class="btn btn-danger" (click)=" removeFromCart(product._id)"> eliminar</button>
-                        </tui-island>
-                        
+                <p>no tienes productos en tu carrito </p>
+                </div>
+                </div>
+                <div class="row g-3 " *ngIf="cartProducts.length !== 0">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6" *ngFor="let product of cartProducts ">
+                        <div >
+                            <tui-island class="max-h">
+                                <p>{{product.title}}</p>
+                                <img width="100px" height="100px" src="{{product.image}}" alt="product.title">
+                                <p>Precio: {{product.price |currency}}</p><br> <p>cantidad: {{product.quantity}}</p>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-danger" (click)=" removeFromCart(product._id)"> eliminar</button>
+                                </div>
+                               
+                            </tui-island>
+                            
+                        </div>
+                      
+                       
                     </div>
-                  
-                   
+                    
+                </div>
+    
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                
+                    <tui-island class="mt-1">
+                        
+                        <h3 class="tui-island__title">total ($): {{totalPrice}}</h3>
+                        <p class="tui-island__paragraph">
+                            Es importante tenga en cuenta algunos aspectos clave para asegurarse de una experiencia de compra exitosa.<br> En primer lugar, debe revisar su carrito de compras para confirmar que todos los artículos y cantidades son correctos.<br>  Es necesario que verifique el precio total de la compra. 
+                        </p>
+                        <p class="tui-island__paragraph tui-island__paragraph_link">
+                        
+                        </p>
+                        <div class="d-flex justify-content-end" *ngIf="cartProducts.length !== 0">
+                            <button class="btn btn-primary " routerLink="/main/checkout">Pagar </button>
+                        </div>
+                    </tui-island>
+                
+                <div>
+                    <p></p>
                 </div>
                 
-            </div>
-
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-            <div>
-                <p>total ($): {{totalPrice}}</p>
-            </div>
-            <div *ngIf="cartProducts.length !== 0">
-                <button class="btn btn-primary " routerLink="/main/checkout">Pagar </button>
+                
             </div>
         </div>
     </div>
+   
     
 </section>
 

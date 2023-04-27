@@ -12,8 +12,10 @@ import { ShoppingCartService } from 'src/app/core/services/shopping-cart.service
 export class ProductComponent implements OnInit, OnDestroy {
   product:any
   paramsId:any
+  quantity:number =1
   $route!:Subscription
   $product!:Subscription
+  loader = true
 
   constructor(private productsServices:ProductsService, private activateRoute:ActivatedRoute,
     private cartService:ShoppingCartService, private router:Router,) { }
@@ -28,18 +30,18 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.paramsId = data
        this.$product = this.productsServices.getProduct(this.paramsId.id).subscribe(
           (data)=>{
-            console.log(data)
+            this.loader = false
             this.product = data
           }
         )
       }
     )
   }
+ 
   addACart(){
-    this.product.quantity =1
-
-    this.cartService.addToCart(this.product)
-    
+    const productPushCart = Object.assign({},this.product)
+    productPushCart.quantity = this.quantity
+    this.cartService.addToCart(productPushCart)
     this.router.navigate(["/main/shopping-cart"])
 }
 

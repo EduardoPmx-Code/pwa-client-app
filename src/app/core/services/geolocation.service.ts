@@ -17,20 +17,20 @@ export class GeolocationService {
     this.getUserLocation()
   }
 
-  getUserLocation():Promise<[number,number]>{
-   return new Promise((resolve,reject)=>{
-    navigator.geolocation.getCurrentPosition(
-      ({coords})=>{
-        
-      this.userLocation = [coords.longitude , coords.latitude,]
-      console.log(this.userLocation)
-      resolve(this.userLocation)
-    }),reject((err: any)=>{
-      console.log(err)
-
+  getUserLocation(): Promise<[number, number]> {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        ({coords}) => {
+          this.userLocation = [coords.longitude, coords.latitude]
+          resolve(this.userLocation)
+        },
+        (err) => {
+          console.log(err)
+          reject(err)
+        }
+      )
     })
-   });
-}
+  }
   createGeolocation(body:any):Observable<any>{
     return this.apiService.post('/geolocation/create',body)
   }

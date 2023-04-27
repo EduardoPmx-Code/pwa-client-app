@@ -1,19 +1,37 @@
-<div class="row">
-    <div class="col">
-        <div class="d-flex justify-content-center align-items-center mt-5">
-            <div class="mt-5 card">
-                <div class="card-body">
-                    <form >
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                          </div>
-                          <div class="mb-3 d-flex justify-content-between">
-                            <button class="btn btn-primary">submit</button>  <a routerLink="/auth/login"> login</a>
-                          </div>
-                    </form>
+<section class="py-5">
+    <div class="row">
+        <div class="col py-5">
+            <div class=" mt-5">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="\assets\icons\icons8-ecommerce-filled-outline-32.png" > 
                 </div>
+                <div>
+                    <h1 class=" text-center">ShopyEase</h1>
+                </div>
+               
             </div>
-        </div> 
+            <div class="d-flex justify-content-center align-items-center mt-2">
+                <div class="mt-5 card">
+                    <div class="card-body">
+                        <form [formGroup]="credentials" (ngSubmit)="submit()" >
+                            <div class="mb-3">
+                                <label  class="form-label">Email address</label>
+                                <input formControlName="email" type="email" class="form-control" placeholder="name@example.com">
+                                <div *ngIf="credentials.get('email')?.touched && credentials.get('email')?.invalid">
+                                    <div *ngIf="credentials.get('email')?.errors">
+      
+                                     <p  class="text-danger">El campo email es requerido</p> 
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="mb-3 d-flex justify-content-between">
+                                <button class="btn btn-primary">submit</button>   <a routerLink="/auth/login"> login</a>
+                              </div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
     </div>
-</div>
+    
+</section>

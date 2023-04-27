@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit ,OnDestroy {
   ngOnInit(): void {
   this.$categories=  this.productsServices.getCategories().subscribe((data)=>{
       this.categories = data
-      console.log(this.categories)
      })
      this.initOrderList()
   }
@@ -34,7 +33,6 @@ export class HomeComponent implements OnInit ,OnDestroy {
    this.$products = this.productsServices.getAllProducts(this.page,this.limit).subscribe(
        (data)=>{
          this.productsList= data.items
-         console.log(this.productsList)
        }
      )
    }

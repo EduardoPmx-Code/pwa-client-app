@@ -129,4 +129,11 @@ export class UserService {
     registerUser(body:any): Observable<any>{
       return this.apiService.post("/auth/register",body)
     }
+
+    recoveryPassword(body:any): Observable<any>{
+      return this.apiService.post("/auth/forgot-password",body)
+    }
+    resetPassword(body:any): Observable<any>{
+      return this.apiService.post("/auth/reset-password",body)
+    }
 }

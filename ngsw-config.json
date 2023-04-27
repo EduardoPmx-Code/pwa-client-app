@@ -26,5 +26,20 @@
         ]
       }
     }
+    
+  ],
+  "dataGroups": [
+    {
+      "name": "refresh-cache",
+      "urls": ["/index.html"],
+      "cacheConfig": {
+        "maxSize": 1,
+        "maxAge": "1d",
+        "strategy": "performance"
+      }
+    }
+  ],
+  "navigationUrls": [
+    "/**"
   ]
 }

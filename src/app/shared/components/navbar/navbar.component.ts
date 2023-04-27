@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TuiDialogService, TuiSizeL, TuiSizeS } from '@taiga-ui/core';
@@ -14,22 +14,21 @@ import { UserService } from 'src/app/core/services/user.service';
 export class NavbarComponent implements OnInit, OnDestroy {
   cartProducts=0
   search:FormGroup;
-  productLengt$!:Subscription;
+  $productLengt!:Subscription;
   dropdownOpen = false;
   size: TuiSizeL | TuiSizeS = 's';
 
-  readonly burgers = ['Classic', 'Cheeseburger', 'Royal Cheeseburger'];
-  readonly drinks = ['Cola', 'Tea', 'Coffee', 'Slurm'];
 
   constructor(private cart:ShoppingCartService,private fb: FormBuilder, private router:Router,
-    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,private userService:UserService) {
+    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService,private userService:UserService,
+    private el: ElementRef) {
     this.search= this.fb.group({
       search:['']
     })
    }
 
   ngOnInit(): void {
-    this.cart.getCart().subscribe(
+   this.$productLengt = this.cart.getCart().subscribe(
       (data=>{
         this.cartProducts = data.length
       })
@@ -46,10 +45,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
 }
 
   ngOnDestroy(): void {
-  //  this.productLengt$.unsubscribe()
+  this.$productLengt.unsubscribe()
    }
    logOut(){
     this.userService.purgeAuth()
    }
+   closeNav() {
+    this.el.nativeElement.querySelector('.navbar-collapse').classList.remove('show');
+  }
 
 }

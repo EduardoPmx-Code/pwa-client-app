@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { ApiService } from './api.service';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderUserService {
 
-  constructor(private apiService: ApiService,) { }
+  constructor(private apiService: ApiService,private alert:AlertService) { }
   getOrderById(id:string):Observable<any>{
     return this.apiService.get(`/order/${id}`)
   }
-  getAllByIdOrders(id:string):Observable<any>{
-    return this.apiService.get(`/order/my-orders/${id}`)
+  getAllByIdOrders(id:string,page:number , limit:number,):Observable<any>{
+    return this.apiService.get(`/order/my-orders/${id}?page=${page}&limit=${limit}`)
   }
   
   createOrder(body:any):Observable<any>{
-    console.log(body)
      return this.apiService.post('/order', body).pipe(
 
       tap(() => {
-        console.log(body)
-        alert("creamos");
+        this.alert.successTimer("order created")
+
       }
       )
     );
@@ -29,8 +29,7 @@ export class OrderUserService {
   updateOrder(body:any):Observable<any>{
   return  this.apiService.post('order',body).pipe(
       tap(() => {
-        console.log(body)
-        alert("actualizamos y creamos uno mas");
+        this.alert.successTimer("order update")
       }
       )
     )

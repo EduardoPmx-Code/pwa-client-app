@@ -16,7 +16,7 @@ import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TuiActiveZoneModule } from '@taiga-ui/cdk';
+import { TuiActiveZoneModule, TuiOverscrollModule } from '@taiga-ui/cdk';
 import { MapComponent } from './checkout/components/map/map.component';
 import { BillingComponent } from './checkout/components/billing/billing.component';
 import { PaymentComponent } from './checkout/components/payment/payment.component';
@@ -59,6 +59,7 @@ import { PaymentComponent } from './checkout/components/payment/payment.componen
     TuiGroupModule,
     TuiRadioBlockModule,
     TuiProgressModule,
+    TuiOverscrollModule,
   ],
   providers:[
   {

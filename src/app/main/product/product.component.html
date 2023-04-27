@@ -1,24 +1,76 @@
-<div class="row">
-<div class="col">
-    <div class="w-50" *ngIf="product">
-        <tui-island
-        size="l"
-      
-    >
-    <h3 class="title">{{product.title}}</h3>
-    <div class="d-flex">
-        <img width="200px" src="{{product.image}}" alt="{{product.title}}">
-        <div class="">
-            <p>{{product.description}}</p>
-            <p>{{product.price|currency}}</p>
-            <div>
-                
-                <button class="btn btn-primary" (click)=" addACart()"> agregar al carrito</button>
+<section class="container mt-3 py-5">
+    <div class="d-flex justify-content-center w-100 "> 
+        <div  *ngIf="loader" class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+    </div>
+    <div class="row py-5"  *ngIf="product">
+        <div class="col-12 col-sm-12 col-lg-6">
+            <div class="d-flex justify-content-center ">
+                <img width="200px" src="{{product.image}}" alt="{{product.title}}">
             </div>
+            
+        </div>
+        <div class="col-12 col-sm-12 col-lg-6">
+            <tui-island class="p-3" size="l">
+                <p class="tui-island__category">Producto:</p>
+                <a >
+                    <h3 class="tui-island__title">{{product.title}}</h3>
+                </a>
+                
+                <p class="tui-island__paragraph">
+                    descripcion:<br> {{product.description}}
+                </p>
+                <p class="tui-island__paragraph ">
+                    Existentes: {{product.quantity}}<br>
+                    Precio:{{product.price|currency}}
+                </p>
+                <div class="d-flex justify-content-between mt-4 ">
+                    <div>
+                        
+
+                        <input class="form-control" type="number" [(ngModel)]="quantity" />
+                        <label  class="tui-island__paragraph ">Cuentos deseas llevar?</label>
+                    </div>
+                        
+                    <div>
+                        <button class="btn btn-primary" (click)=" addACart()"> agregar al carrito</button>
+                    </div>
+                </div>
+            </tui-island>
+           
         </div>
     </div>
-    </tui-island>
+    <!--
+         <div class="d-flex justify-content-center">
+        <div  *ngIf="product">
+            <tui-island
+            size="l"
+          
+        >
+        <div class="d-flex">
+            <div>
+                <img width="200px" src="{{product.image}}" alt="{{product.title}}">
+            </div>
+            <div>
+                <h3 class="title ">{{product.title}}</h3>
+                <div>
+                    <p>{{product.description}}</p>
+                <p>{{product.price|currency}}</p>
+                </div>
+                <div>
+                   
+                    <button class="btn btn-primary" (click)=" addACart()"> agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+        
+       
+    
+        </tui-island>
+        </div>
     </div>
-</div>
-</div>
+    -->
+   
+</section>
 

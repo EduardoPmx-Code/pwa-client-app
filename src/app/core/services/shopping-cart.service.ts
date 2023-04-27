@@ -24,7 +24,6 @@ export class ShoppingCartService {
   constructor() { 
     this.cartSubject.subscribe((data)=>{
       this.cartlength = data.length;
-      console.log(this.cartlength);
     });
   }
   getTotalPrice(): number {
@@ -56,7 +55,6 @@ export class ShoppingCartService {
     if (index !== -1) {
       this.cart.splice(index, 1); // Eliminamos el producto del carrito
       this.cartSubject.next(this.cart);
-      console.log(this.cart)
       this.cartlength = this.cart.length; // Actualizamos la longitud del carrito
     }
   }

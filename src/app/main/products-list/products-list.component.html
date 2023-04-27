@@ -1,29 +1,101 @@
-<section class="container">
-  
-    <div class="row">
-        <div *ngFor="let product of productsList.items" class="col">
+<section    class="container py-5">
+    <div class="d-flex justify-content-center w-100 "> 
+        <div  *ngIf="loader" class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+    </div>
+    
+    <div  class="row  d-flex justify-content-center g-5 mt-1">
+        <div *ngFor="let product of productsList.items"  class=" col-12 col-sm-12 col-md-12 col-lg-4   d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block ">
             <div class="">
-                <a
-                routerLink="/main/product/{{product._id}}"
-                tuiLink
-            >
-                <tui-island size="l">
-                    <div class="tui-island__content">
-                        <div class="tui-island__figure">
-                           <img width="200px" src="{{product.image}}" alt="">
-                        </div>
+                <div  class="">
+                   
+                    <tui-island  class="my-panel" [hoverable]="true" size="l">
+                        <div class=" tui-island__content my-panel  ">
+                            <a
+                            routerLink="/main/product/{{product._id}}"
+                            tuiLink
+                        >
+                            <div class="d-flex justify-content-between m-3" >
+                                <div class="tui-island__figure">
+                                    <img width="100px" height="100px" src="{{product.image}}" alt="">
+                                   
+                                 </div>
+                                 <div >
+                                    <h3 class="tui-island__title">{{product.title}}</h3>
+                                    <p class="tui-island__paragraph">
+                                        {{product.price|currency}}
+                                    </p>
+                                 </div>
+                                 
+                                
+                            </div>
+                            </a>
+
+                           
+                            <button 
+    
+                         tuiAction
+                         icon="tuiIconShoppingCartLarge"
+                        type="button"
+                        class="action"
+                        (click)="addCart(product)"
+                            >
+                            <span class="tui-island__paragraph "> Agrega uno al carrito</span>
+                            
+                         </button>
+                    </div>
+                        
+                        
+                    </tui-island>
+                
+            </div>
+            </div>
+        </div>
+        <div *ngFor="let product of productsList.items" class="col-12 col-sm-12 col-md-12 col-lg-4 d-lg-none d-xl-block d-xl-none d-xxl-block d-xxl-none">
+            <div  class=" ">
+                <tui-island>
+                    <a
+                    routerLink="/main/product/{{product._id}}"
+                    tuiLink
+                >
+                    <div class="d-flex justify-content-between">
                         <div>
                             <h3 class="tui-island__title">{{product.title}}</h3>
                             <p class="tui-island__paragraph">
-                                {{product.description }}
+                                {{product.price|currency}}
                             </p>
-                            
                         </div>
+                        <div>
+                            <img width="100px" height="100px" src="{{product.image}}" alt="">
+                        </div>
+                       
                     </div>
-                </tui-island>
-            </a>
+                  
+                </a>
+                   
+                    <button
+                        tuiButton
+                        type="button"
+                        
+                        size="s"
+                        class="tui-island__footer-button  "
+                        (click)="addCart(product)"
+                    >
+                     Agrega uno al carrito
+                    
+                    </button>
+                </tui-island> 
+            </div>
+              
         </div>
+        
+       
         </div>
+       <div class="d-flex justify-content-evenly mt-4">
+            <button (click)="loadPageOld()" *ngIf="productsList.currentPage >1 && productsList.totalPages >1" class="btn btn-danger">anterior</button> <button *ngIf="productsList.currentPage < productsList.totalPages" (click)="loadMore()" class="btn btn-primary">siguiente</button>
         </div>
+
+        
 </section>
-<button (click)="loadPageold()" *ngIf="productsList.currentPage >1 && productsList.totalPages >1" class="btn btn-danger">anterior</button> <button *ngIf="productsList.currentPage < productsList.totalPages" (click)="loadMore()" class="btn btn-primary">more</button>
+

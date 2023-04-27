@@ -1,57 +1,68 @@
 <div class="container py-5">
-    <tui-island class="p-5" *ngIf="order" size="l">
-        <h3>Order: {{order._id|slice:1:7}}</h3>
-        <div class="tui-island__content">
-           
-              
-            <div class="row   w-100 ">
-               <div class="col " >
-                <p class="tui-island__paragraph mt-2">
-                  
-                   Dia: {{order.created|date}}
-                 </p>
-                 <p class="tui-island__paragraph mt-2">
-                    Total: {{order.totalPrice|currency}}<br>
-                   Orden Activa: {{order.active?"si":"no"}}
-                 </p>
-                 
-              
-               </div>
+    <div class="py-5">
+        <div *ngIf="loader" class="d-flex justify-content-center w-100  mt-5"> 
+            <div   class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+        </div>
+        <tui-island *ngIf="order" size="l">
+         
+                <h3 class="tui-island__title">Order: {{order._id|slice:1:7}}</h3>
+          
+            
+            <div class="tui-island__content">
                
-               <div class="col d-flex justify-content-center " >
-                <div class="container d-flex ">
                   
-                        <div class="vr"></div>
-                      <div class="row">
-                    
-                        <div *ngFor=" let item of order.products" class="col-12  d-flex justify-content-between">
-                            
-                            <div class="p-1 w-100">
-                                
+                <div class="row   w-100 ">
+                   <div class="col " >
+                    <p class="tui-island__paragraph mt-2 mb-2">
+                      
+                       Dia: {{order.created|date}}
+                     </p>
+                     <p class="tui-island__paragraph mt-2 mb-3">
+                        Total: {{order.totalPrice|currency}}<br>
+                       Orden Activa: {{order.active?"si":"no"}}
+                     </p>
+                     
+                  
+                   </div>
+                   
+                   <div class="col d-flex justify-content-center " >
+                    <div class="container d-flex ">
+                      
+                            <div class="vr"></div>
+                          <div class="row">
+                        
+                            <div *ngFor=" let item of order.products" class="col-12  d-flex justify-content-between">
+                                <div class="row">
                                     
+                                    <div class="col-12">
+                                        
+                                        <p class="ms-3 tui-island__paragraph">
+                                            {{ item.product.title}}<br>
+                                            {{ item.product.price|currency}}
+                                           </p> 
+                                           
+                                          
+                                    </div>
+                                    <div class="col-12">
+                                        <img width="100px" height="100px" src="{{item.product.image}}" alt="{{ item.product.title}}">
+                                        <hr class="w-100"> 
+                                    </div>
+                                    
+                                </div>
                                 
-                               <p class="ms-3">
-                                {{ item.product.title}}<br>
-                                {{ item.product.price|currency}}
-                               </p> 
-                               
-                               <hr class="">
-                            </div>
-                            
-                            <div>
-                               
-                                <img width="100px" height="100px" src="{{item.product.image}}" alt="{{ item.product.title}}">
                                
                             </div>
-                           
                         </div>
                     </div>
+                    
+                   </div>
+                    
                 </div>
-                
-               </div>
-                
+        
             </div>
-    
-        </div>
-    </tui-island>
+        </tui-island>
+    </div>
+
 </div>

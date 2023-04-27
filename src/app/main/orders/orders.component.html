@@ -1,32 +1,50 @@
-<section class="container">
-  
-    <div class="row">
-        <div  class="col">
-            <div *ngFor="let order of orders"class="">
-                <a
-                routerLink="/main/order/{{order._id}}"
-                tuiLink
-            >
-                <tui-island size="l">
-                    <div class="tui-island__content">
-                        <div class="tui-island__figure">
-                          <h3>{{order.totalPrice}}</h3>
-                        </div>
-                        <div *ngFor="let product of order.products">
+<section class="container py-5">
+    <div class="py-2">
+        <div *ngIf="loader" class="d-flex justify-content-center w-100  mt-5"> 
+            <div   class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+        </div>
+        <div *ngIf="orders" class="row g-3">
+            <div  *ngFor="let order of orders.items" class="col-12 col-sm-12 col-md-12 col-lg-4">
+                <div class="">
+                    
+    
+                    <tui-island  [hoverable]="true" size="l" size="l">
+                        <a
+                        routerLink="/main/order/{{order._id}}"
+                        tuiLink
+                    >
+                        <h3>Order: {{order._id|slice:1:7}}</h3>
+                        <div class="tui-island__content">
                            
-                            <p class="tui-island__paragraph">
-                               {{product.product.title}}
-                                {{product.quantity
-                                }}
-                                {{product.price
-                                }}
-                            </p>
-                            
+                              
+                            <div class="d-flex justify-content-between  w-100">
+                               <div >
+                                <p class="tui-island__paragraph">
+                                   Total: {{order.totalPrice|currency}}<br>
+                                   Dia: {{order.created|date}}
+                                 </p>
+                                
+                              
+                               </div>
+                               <div>
+                                <p class="tui-island__paragraph">
+                                    Orden:  <span *ngIf="order.active === true" class="badge rounded-pill bg-primary">Activa</span> 
+                                            <span *ngIf="order.active === false" class="badge rounded-pill bg-danger">Terminada</span>
+                                  </p>
+                                 
+                               </div>
+                               
+                                
+                            </div>
                         </div>
-                    </div>
-                </tui-island>
-            </a>
-        </div>
-        </div>
-        </div>
+                    </a>
+                    </tui-island>
+                
+            </div>
+            </div>
+            </div>
+    </div>
+   
 </section>

@@ -1,31 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscriber, Subscription } from 'rxjs';
+import { AlertService } from 'src/app/core/services/alert.service';
 import { SessionService } from 'src/app/core/services/session.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { userNameValidator } from 'src/app/shared/components/utils/validator-username';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
   credentials: FormGroup ;
+  $loggerSubscribe:Subscription | undefined;
+  $attemptAuth:Subscription | undefined
   constructor(
      private router:Router,
      private fb: FormBuilder,
      private userServices:UserService,
-     private sesionservice:SessionService
+     private sesionservice:SessionService,
+     private alert:AlertService
      ) {    
     this.credentials = this.fb.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+    username: ['', [Validators.required, userNameValidator]],
+    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
   }); }
+  ngOnDestroy(): void {
+    this.$loggerSubscribe?.unsubscribe()
+    this.$attemptAuth?.unsubscribe()
+  }
 
   ngOnInit(): void {
   }
  login(){
-    this.userServices.logger(this.credentials.value).subscribe(
+   this.$loggerSubscribe = this.userServices.logger(this.credentials.value).subscribe(
      {
         
         next: (token) => {
@@ -33,15 +43,14 @@ export class LoginComponent implements OnInit {
             const { 
               //decodedToken ,
               user} = token;
-           console.log(user)
-               this.userServices.attemptAuth(user).subscribe(
+              this.$attemptAuth =  this.userServices.attemptAuth(user).subscribe(
                  {
                    next: () => {
                      const currentUser = SessionService.getUser();
                      if (currentUser != null) {
                        this.router.navigateByUrl('main', { replaceUrl: true });
                      } else {
-                       alert("error")
+                       this.alert.errorTimer("error")
                        
                      }
                     // loading
@@ -49,14 +58,14 @@ export class LoginComponent implements OnInit {
                  },
                )  
           }else{
-            alert("invalid user")
+            this.alert.errorTimer("invalid user")
+
           }
         },
         error: () => {
-        alert("'Error al iniciar sesión'")
+          this.alert.errorTimer("Error Auth")
         },
         complete: () => {
-          console.log("complete")
         },
       },
     )

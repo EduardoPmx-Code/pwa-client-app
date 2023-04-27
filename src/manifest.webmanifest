@@ -1,6 +1,6 @@
 {
-  "name": "pwa-cliente-app",
-  "short_name": "pwa-cliente-app",
+  "name": "cliente-app",
+  "short_name": "cliente-app",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
@@ -58,6 +58,18 @@
     {
       "src": "assets/icons/icon-bran.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icons8-ecommerce-filled-outline-16.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icons8-ecommerce-filled-outline-32.png",
+      "sizes": "128x128",
       "type": "image/png",
       "purpose": "maskable any"
     }

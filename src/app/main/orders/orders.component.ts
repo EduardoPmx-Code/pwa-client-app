@@ -13,7 +13,7 @@ export class OrdersComponent implements OnInit,OnDestroy {
   orders!:any
   page = 1;
   limit = 10;
-  loader = true
+  loader = false
   $order:Subscription | undefined
   constructor(
     private orderService:OrderUserService,
@@ -24,11 +24,13 @@ export class OrdersComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
+    this.loader = true
    this.id =SessionService.getUser()
    this.$order = this.orderService.getAllByIdOrders(this.id._id,this.page,this.limit).subscribe(data=>{
       this.loader = false
       this.orders = data
     })
+    this.loader = false
   }
 
 }

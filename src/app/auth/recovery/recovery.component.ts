@@ -14,6 +14,7 @@ import { ConfirmedValidator } from 'src/app/shared/components/utils/validator-pa
 export class RecoveryComponent implements OnInit,OnDestroy {
   credentials: FormGroup ;
   $suscription:Subscription | undefined
+  loader = false
   constructor(  
     private fb: FormBuilder,
     private userService:UserService,
@@ -32,7 +33,9 @@ export class RecoveryComponent implements OnInit,OnDestroy {
   }
   submit(){
    this.$suscription= this.userService.recoveryPassword(this.credentials.value).subscribe((data)=>{
+      this.loader = true
       this.alert.infoTimer("Send email",1000)
+      this.loader = false
       this.router.navigate(["/auth"])
     });
   }

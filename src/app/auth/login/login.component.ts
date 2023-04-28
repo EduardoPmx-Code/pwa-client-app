@@ -15,7 +15,8 @@ import { userNameValidator } from 'src/app/shared/components/utils/validator-use
 export class LoginComponent implements OnInit,OnDestroy {
   credentials: FormGroup ;
   $loggerSubscribe:Subscription | undefined;
-  $attemptAuth:Subscription | undefined
+  $attemptAuth:Subscription | undefined;
+  loader = false
   constructor(
      private router:Router,
      private fb: FormBuilder,
@@ -25,16 +26,17 @@ export class LoginComponent implements OnInit,OnDestroy {
      ) {    
     this.credentials = this.fb.group({
     username: ['', [Validators.required, userNameValidator]],
-    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
+    password: ['', [Validators.required]],
   }); }
   ngOnDestroy(): void {
-    this.$loggerSubscribe?.unsubscribe()
-    this.$attemptAuth?.unsubscribe()
+  //  this.$loggerSubscribe?.unsubscribe()
+  //  this.$attemptAuth?.unsubscribe()
   }
 
   ngOnInit(): void {
   }
  login(){
+  this.loader = true
    this.$loggerSubscribe = this.userServices.logger(this.credentials.value).subscribe(
      {
         
@@ -47,13 +49,15 @@ export class LoginComponent implements OnInit,OnDestroy {
                  {
                    next: () => {
                      const currentUser = SessionService.getUser();
+                     
                      if (currentUser != null) {
+                      
                        this.router.navigateByUrl('main', { replaceUrl: true });
                      } else {
                        this.alert.errorTimer("error")
-                       
+                     
                      }
-                    // loading
+                     this.loader = false
                    },
                  },
                )  
@@ -66,6 +70,7 @@ export class LoginComponent implements OnInit,OnDestroy {
           this.alert.errorTimer("Error Auth")
         },
         complete: () => {
+          this.loader = false
         },
       },
     )

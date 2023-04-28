@@ -5,6 +5,15 @@
                 <span class="visually-hidden">Loading...</span>
               </div>
         </div>
+        <div class="py-5  w-100" *ngIf="!orders">
+            <div class="d-flex py-5 justify-content-center">
+                <div class="py-2">
+                    <h3 class="my-5 ">No tienes ordenes pendientes</h3>
+                </div>
+               
+            </div>
+           
+        </div>
         <div *ngIf="orders" class="row g-3">
             <div  *ngFor="let order of orders.items" class="col-12 col-sm-12 col-md-12 col-lg-4">
                 <div class="">
@@ -44,7 +53,7 @@
                 
             </div>
             </div>
-            </div>
+        </div>
     </div>
    
 </section>

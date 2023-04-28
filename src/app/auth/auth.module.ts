@@ -8,6 +8,8 @@ import { RecoveryComponent } from './recovery/recovery.component';
 import { AuthComponent } from './auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { TuiIslandModule } from '@taiga-ui/kit';
+import { TuiButtonModule, TuiLinkModule } from '@taiga-ui/core';
 
 
 @NgModule({
@@ -23,6 +25,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     AuthRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    TuiIslandModule,
+    TuiButtonModule,
+    TuiLinkModule,
   ],
 })
 export class AuthModule { }

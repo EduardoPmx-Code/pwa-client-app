@@ -10,107 +10,154 @@
        
     </div>
         <div class="d-flex justify-content-center align-items-center mt-2">
-            <div class="mt-5 card">
-                <div class="card-body">
-                    <form [formGroup]="registerForm" (ngSubmit)="register()">
+          
+            <tui-island
+            size="l"
+            
+        >
+            <div class="tui-island__content">
+                
+                <div>
+                    <div class="w-100  d-flex justify-content-center">
+                        <h3 class="tui-island__title ">Register</h3>
+                    </div>
+                    <form class="mt-2" [formGroup]="registerForm" (ngSubmit)="register()">
+                      <div class="mb-3">
+                          <label  class="form-label">UserName</label>
+                          <input type="text" formControlName="username" class="form-control"  placeholder="@example">
+                          <span *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+                            <p  class="text-danger"> Username debe iniciar con '@'<br>Maximo de Caractere hasta 20</p> 
+                          </span>
+                        </div>
                         <div class="mb-3">
-                            <label  class="form-label">UserName</label>
-                            <input type="text" formControlName="username" class="form-control"  placeholder="@example">
-                            <span *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
-                              <p  class="text-danger"> Username debe iniciar con '@' y tener un maximo de 7 caracteres.</p> 
-                            </span>
-                          </div>
-                          <div class="mb-3">
-                            <label  class="form-label">Name</label>
-                            <input type="text" formControlName="name" class="form-control"  placeholder="name">
-                            <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid">
-                              <div *ngIf="registerForm.get('name')?.errors">
+                          <label  class="form-label">Name</label>
+                          <input type="text" formControlName="name" class="form-control"  placeholder="name">
+                          <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid">
+                            <div *ngIf="registerForm.get('name')?.errors">
 
-                               <p  class="text-danger">El campo name es requerido debe entre 6 y 8 caracteres</p> 
-                              </div>
+                             <p  class="text-danger">El campo name es requerido </p> 
                             </div>
                           </div>
-                          <div class="mb-3">
-                            <label  class="form-label">LastName</label>
-                            <input type="text" formControlName="lastName" class="form-control"  placeholder="lastName">
-                            <div *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid">
-                              <div *ngIf="registerForm.get('lastName')?.errors">
+                        </div>
+                        <div class="mb-3">
+                          <label  class="form-label">LastName</label>
+                          <input type="text" formControlName="lastName" class="form-control"  placeholder="lastName">
+                          <div *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid">
+                            <div *ngIf="registerForm.get('lastName')?.errors">
 
-                               <p  class="text-danger">El campo email es requerido debe entre 6 y 8 caracteres</p> 
-                              </div>
+                             <p  class="text-danger">El campo email es requerido </p> 
+                            </div>
+                          </div>
+                        </div>
+                        
+                      <div class="mb-3">
+                          <label  class="form-label">Email address</label>
+                          <input formControlName="email" type="email" class="form-control"  placeholder="name@example.com">
+                          <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+                            <div *ngIf="registerForm.get('email')?.errors">
+
+                             <p  class="text-danger">El campo email es requerido</p> 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label  class="form-label">Password</label>
+                          <input formControlName="password" class="form-control" type="password" placeholder="*******">
+                          <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+                            <div *ngIf="registerForm.get('password')?.errors">
+
+                              <p  class="text-danger">password requerido <br>  Entre 6 y 12 caracteres</p> 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label  class="form-label">repeat password</label>
+                          
+                          <input formControlName="repeatPassword" class="form-control" type="password" placeholder="">
+                          <div *ngIf="registerForm.get('repeatPassword')?.touched && registerForm.get('repeatPassword')?.invalid">
+                            <div *ngIf="registerForm.get('repeatPassword')?.errors">
+                             <p class="text-danger"> Las contraseñas no coinciden.</p> 
+                            </div>
+                          </div>
+                         
+                        
+                        </div>
+                        <div class="mb-3">
+                          <label  class="form-label">ID number</label>
+                          <input type="text" formControlName="id" class="form-control" placeholder="123456">
+                          <div *ngIf="registerForm.get('id')?.touched && registerForm.get('id')?.invalid">
+                            <div *ngIf="registerForm.get('id')?.errors">
+
+                             <p  class="text-danger">El campo ID number es requerido<br> debe entre 4 y 20 caracteres</p> 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label  class="form-label">Phone</label>
+                          <input type="text" formControlName="phone" class="form-control" placeholder="123456">
+                          <div *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+                            <div *ngIf="registerForm.get('phone')?.errors">
+
+                             <p  class="text-danger">El campo Phone es requerido</p> 
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label  class="form-label mb-3">Address</label>
+                          <input class="form-control " formControlName="country" type="text" placeholder="country">
+                          <div *ngIf="registerForm.get('country')?.touched && registerForm.get('country')?.invalid">
+                            <div >
+
+                             <p  class="text-danger">Campo requerido</p> 
+                            </div>
+                          </div>
+                          <input class="form-control mt-2" formControlName="city" type="text" placeholder="city">
+                          <div *ngIf="registerForm.get('city')?.touched && registerForm.get('city')?.invalid">
+                            <div >
+
+                             <p  class="text-danger">Campo requerido</p> 
+                            </div>
+                          </div>
+                          <input class="form-control mt-2" formControlName="state" type="text" placeholder="state">
+                          <div *ngIf="registerForm.get('state')?.touched && registerForm.get('state')?.invalid">
+                            <div >
+
+                             <p  class="text-danger">Campo requerido</p> 
+                            </div>
+                          </div>
+                          <input class="form-control mt-2" formControlName="zip" type="text" placeholder="zip">
+                          <div *ngIf="registerForm.get('zip')?.touched && registerForm.get('zip')?.invalid">
+                            <div >
+
+                             <p  class="text-danger">Campo requerido</p> 
                             </div>
                           </div>
                           
-                        <div class="mb-3">
-                            <label  class="form-label">Email address</label>
-                            <input formControlName="email" type="email" class="form-control"  placeholder="name@example.com">
-                            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
-                              <div *ngIf="registerForm.get('email')?.errors">
-
-                               <p  class="text-danger">El campo email es requerido</p> 
-                              </div>
-                            </div>
-                          </div>
-                          <div class="mb-3">
-                            <label  class="form-label">Password</label>
-                            <input formControlName="password" class="form-control" type="password" placeholder="*******">
-                            <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
-                              <div *ngIf="registerForm.get('password')?.errors">
-
-                               <p  class="text-danger">password requerido debe tener entre 6 y 8 caracteres</p> 
-                              </div>
-                            </div>
-                          </div>
-                          <div class="mb-3">
-                            <label  class="form-label">repeat password</label>
-                            
-                            <input formControlName="repeatPassword" class="form-control" type="password" placeholder="">
-                            <div *ngIf="registerForm.get('repeatPassword')?.touched && registerForm.get('repeatPassword')?.invalid">
-                              <div *ngIf="registerForm.get('repeatPassword')?.errors">
-                               <p class="text-danger"> Las contraseñas no coinciden.</p> 
-                              </div>
-                            </div>
-                           
                           
-                          </div>
-                          <div class="mb-3">
-                            <label  class="form-label">ID number</label>
-                            <input type="text" formControlName="id" class="form-control" placeholder="123456">
-                            <div *ngIf="registerForm.get('id')?.touched && registerForm.get('id')?.invalid">
-                              <div *ngIf="registerForm.get('id')?.errors">
+                        </div>
 
-                               <p  class="text-danger">El campo ID number es requerido debe entre 6 y 8 caracteres</p> 
-                              </div>
+                        <div class="d-flex justify-content-center w-100 "> 
+                          <div  *ngIf="loader" class="spinner-border text-primary" role="status">
+                              <span class="visually-hidden">Loading...</span>
                             </div>
-                          </div>
-                          <div class="mb-3">
-                            <label  class="form-label">Phone</label>
-                            <input type="text" formControlName="phone" class="form-control" placeholder="123456">
-                          </div>
-                          <div class="mb-3">
-                            <label  class="form-label mb-3">Address</label>
-                            <input class="form-control " formControlName="country" type="text" placeholder="country">
-                            <input class="form-control mt-2" formControlName="city" type="text" placeholder="city">
-                            <input class="form-control mt-2" formControlName="state" type="text" placeholder="state">
-                            <input class="form-control mt-2" formControlName="zip" type="text" placeholder="zip">
-                            <div *ngIf="registerForm.get('country')?.touched && registerForm.get('country')?.invalid
-                            || registerForm.get('city')?.touched && registerForm.get('city')?.invalid
-                            || registerForm.get('state')?.touched && registerForm.get('state')?.invalid
-                            || registerForm.get('zip')?.touched && registerForm.get('zip')?.invalid
-                            ">
-                              <div >
-
-                               <p  class="text-danger">todos los campos son requerido y deben entre 6 y 8 caracteres</p> 
-                              </div>
-                            </div>
-                          </div>
-                          <div class="mb-3 d-flex justify-content-between">
-                            <button class="btn btn-primary">submit</button>  <a routerLink="/auth/login"> Login</a>
-                          </div>
-                    </form>
-
+                      </div>
+                        <div class="mb-3 d-flex justify-content-end">
+                            <a  tuiLink routerLink="/auth/login"> Login</a>
+                        </div>
+                        <button
+                        tuiButton
+                        type="submit"
+                      
+                        size="m"
+                        class="tui-island__footer-button"
+                    >
+                    Register
+                    </button>
+                  </form>
                 </div>
             </div>
+        </tui-island>
         </div> 
+        
     </div>
 </div>

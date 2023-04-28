@@ -12,27 +12,62 @@
                    
                 </div>
                
-            <div class="d-flex justify-content-center align-items-center mt-5">
+            <div class="d-flex justify-content-center align-items-center mt-5"> 
+            <tui-island
+                size="l"
                 
-                <div class="mt-2 card">
-                    <div class="card-body">
+            >
+                <div class="tui-island__content">
+                    
+                    <div>
+                        <div class="w-100  d-flex justify-content-center">
+                            <h3 class="tui-island__title ">Login</h3>
+                        </div>
                         <form [formGroup]="credentials" (ngSubmit)="login()">
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">UserName</label>
-                                <input  formControlName="username" type="text" placeholder="user name"    class="form-control" >
-                              </div>
-                              <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-                                <input formControlName="password" type="password"  class="form-control"  placeholder="*******">
-                                <a routerLink="/auth/recovery-password"> recovery</a>
-                              </div>
-                              <div class="mb-3 d-flex justify-content-between">
-                                <button class="btn btn-primary">submit</button>  <a routerLink="/auth/register"> register</a>
-                              </div>
-                        </form>
-    
+                        <div class="tui-island__paragraph">
+                            
+                                <div class="mb-3">
+                                    <label  class="form-label">Usuario</label>
+                                    <input  formControlName="username" type="text" placeholder="@userName"    class="form-control" >
+                                    <span *ngIf="credentials.get('username')?.invalid && credentials.get('username')?.touched">
+                                        <p  class="text-danger">  *Username debe iniciar con '@'</p> 
+                                      </span>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label  class="form-label">Password</label>
+                                    <input formControlName="password" type="password"  class="form-control"  placeholder="*******">
+                                    <div *ngIf="credentials.get('password')?.touched && credentials.get('password')?.invalid">
+                                        <div *ngIf="credentials.get('password')?.errors">
+          
+                                         <p  class="text-danger">password requerido </p> 
+                                        </div>
+                                    </div>
+                                    <a   tuiLink routerLink="/auth/recovery-password"> recovery</a>
+                                    
+                                  </div>
+                                  <div class="d-flex justify-content-center w-100 "> 
+                                    <div  *ngIf="loader" class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                      </div>
+                                </div>
+                                  <div class="mb-3 d-flex justify-content-end">
+                                      <a   tuiLink routerLink="/auth/register"> register</a>
+                                  </div>
+                            
+                        </div>
+                        <button
+                            tuiButton
+                            type="submit"
+                          
+                            size="m"
+                            class="tui-island__footer-button"
+                        >
+                        login
+                        </button>
+                    </form>
                     </div>
                 </div>
+            </tui-island>
             </div> 
             </div>
             

@@ -5,6 +5,6 @@ export function userNameValidator(control: AbstractControl): { [key: string]: bo
   if (!value || typeof value !== 'string') {
     return null;
   }
-  const valid = value.startsWith('@') && value.length <= 7;
+  const valid = value.startsWith('@') && value.length <= 20;
   return valid ? null : { userNameInvalid: true };
 }

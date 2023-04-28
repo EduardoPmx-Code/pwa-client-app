@@ -15,15 +15,16 @@ export class ResetPasswordComponent implements OnInit ,OnDestroy {
   params?:string | null
   credentials: FormGroup;
   $suscription: Subscription = new Subscription;
+  loader = false
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router:Router,
     private fb: FormBuilder,
     private userService:UserService,
-    private alert:AlertService) {
+    private alert:AlertService) { 
     this.credentials = this.fb.group({
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]],
       repeatPassword: ['', Validators.required],
     }, {
       validator: ConfirmedValidator('password', 'repeatPassword')
@@ -47,10 +48,23 @@ export class ResetPasswordComponent implements OnInit ,OnDestroy {
         token:this.params,
         password:this.credentials.value.password
       }
+      this.loader = true
       this.$suscription = this.userService.resetPassword(body).subscribe((data)=>{
-        this.alert.successTimer("password update")
-      this.router.navigate(["/auth"])
+        this.loader = true
+        if(data.status === 'changePassword'){
+          this.loader = false
+          this.alert.successTimer("password update")
+          this.router.navigate(["/auth"])
+        }else{
+          this.alert.errorTimer("Error al intentar cambiar el password")
+          this.loader = false
+          setTimeout(() => {
+            this.router.navigate(["/auth"])
+          }, 1000);
+         
+        }
       })
+      this.loader = false
     }
    
   }
